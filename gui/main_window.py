@@ -74,6 +74,8 @@ class MainWindow(QMainWindow):
         self.input_panel.l_edit.textChanged.connect(self._on_l_changed)
         self.input_panel.P_edit.textChanged.connect(self._on_P_changed)
         self.input_panel.q_edit.textChanged.connect(self._on_q_changed)
+        # Связь "выбор варианта -> автонастройка схемы нагружения"
+        self.input_panel.variant_selected.connect(self._on_variant_selected)
         input_layout.addWidget(self.input_panel)
         self.tabs.addTab(input_tab, "Ввод данных")
         scheme_tab = QWidget()
@@ -91,6 +93,24 @@ class MainWindow(QMainWindow):
         self.plot_widget = PlotWidget()
         plots_layout.addWidget(self.plot_widget)
         self.tabs.addTab(plots_tab, "Эпюры")
+
+    def _on_variant_selected(self, variant) -> None:
+        """Слот: пользователь выбрал вариант в InputPanel.
+
+        Автоматически конфигурирует редактор схемы нагружения
+        (нагрузки, направления, кратности, закрепление).
+
+        Args:
+            variant: core.variants_db.VariantData или None (ручной ввод).
+        """
+        # SchemeEditor создаётся позже InputPanel в create_central_widget,
+        # поэтому защищаемся от сигнала при инициализации.
+        editor = getattr(self, "scheme_editor", None)
+        if editor is not None:
+            editor.load_variant_scheme(variant)
+        if variant is not None and not self.title_data.get("variant"):
+            # Подставить номер варианта в титульник, если он ещё пуст
+            self.title_data["variant"] = f"Вариант {variant.variant_id}"
 
     def _on_l_changed(self, text):
         try:

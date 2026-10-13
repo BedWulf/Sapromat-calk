@@ -1,0 +1,1266 @@
+{
+  "description": "База вариантов: расчёт стержня на растяжение-сжатие (методичка ОмГТУ). Структура: 'schemes' — схемы нагружения (Приложение 2), 'data_sets' — числовые данные P/q/l/[sigma]/E (Приложение 1), 'variants' — готовые комбинации (variant -> scheme_number + data_number). В GUI схему и данные можно выбирать независимо либо перейти на ручной ввод ('Своя схема'). direction: 1 = вправо (+z), -1 = влево; segment: 1..4; count — кратность (2 -> '2P'/'2q'). support_side: left (закрепление при x=0) / right (x=4l). На свободном конце каждой схемы есть сосредоточенная сила — от неё определяется граничное условие N.",
+  "units": {
+    "P": "кН",
+    "q": "кН/м",
+    "l": "м",
+    "sigma_allow": "МПа",
+    "E": "МПа"
+  },
+  "data_sets": [
+    {
+      "id": "1",
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "id": "2",
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "id": "3",
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "1",
+      "scheme_number": 1,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "2",
+      "scheme_number": 2,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "3",
+      "scheme_number": 3,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "4",
+      "scheme_number": 4,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "5",
+      "scheme_number": 5,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "6",
+      "scheme_number": 6,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "7",
+      "scheme_number": 7,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "8",
+      "scheme_number": 8,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "9",
+      "scheme_number": 9,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "10",
+      "scheme_number": 10,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "11",
+      "scheme_number": 11,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "12",
+      "scheme_number": 12,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "13",
+      "scheme_number": 13,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "14",
+      "scheme_number": 14,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "15",
+      "scheme_number": 15,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "16",
+      "scheme_number": 16,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "17",
+      "scheme_number": 17,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "18",
+      "scheme_number": 18,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "19",
+      "scheme_number": 19,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "20",
+      "scheme_number": 20,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "21",
+      "scheme_number": 21,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "22",
+      "scheme_number": 22,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "23",
+      "scheme_number": 23,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "24",
+      "scheme_number": 24,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "25",
+      "scheme_number": 25,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "26",
+      "scheme_number": 26,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "27",
+      "scheme_number": 27,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "28",
+      "scheme_number": 28,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "29",
+      "scheme_number": 29,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "30",
+      "scheme_number": 30,
+      "data_number": 1,
+      "P": 15,
+      "q": 20,
+      "l": 1.0,
+      "sigma_allow": 160,
+      "E": 200000
+    },
+    {
+      "variant_id": "31",
+      "scheme_number": 5,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "32",
+      "scheme_number": 8,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "33",
+      "scheme_number": 11,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "34",
+      "scheme_number": 14,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "35",
+      "scheme_number": 17,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "36",
+      "scheme_number": 20,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "37",
+      "scheme_number": 23,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "38",
+      "scheme_number": 26,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "39",
+      "scheme_number": 29,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "40",
+      "scheme_number": 2,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "41",
+      "scheme_number": 6,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "42",
+      "scheme_number": 10,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "43",
+      "scheme_number": 15,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "44",
+      "scheme_number": 19,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "45",
+      "scheme_number": 24,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "46",
+      "scheme_number": 27,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "47",
+      "scheme_number": 30,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "48",
+      "scheme_number": 1,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    },
+    {
+      "variant_id": "49",
+      "scheme_number": 13,
+      "data_number": 3,
+      "P": 20,
+      "q": 22,
+      "l": 0.8,
+      "sigma_allow": 100,
+      "E": 70000
+    },
+    {
+      "variant_id": "50",
+      "scheme_number": 22,
+      "data_number": 2,
+      "P": 25,
+      "q": 30,
+      "l": 1.2,
+      "sigma_allow": 120,
+      "E": 210000
+    }
+  ],
+  "schemes": [
+    {
+      "scheme_id": "1",
+      "name": "Схема 1",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "2",
+      "name": "Схема 2",
+      "support_side": "left",
+      "loads": [
+        {
+          "segment": 3,
+          "type": "distributed",
+          "direction": -1,
+          "count": 1
+        },
+        {
+          "segment": 4,
+          "type": "force",
+          "direction": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "scheme_id": "3",
+      "name": "Схема 3",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "4",
+      "name": "Схема 4",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "5",
+      "name": "Схема 5",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 3,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "6",
+      "name": "Схема 6",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "7",
+      "name": "Схема 7",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "8",
+      "name": "Схема 8",
+      "support_side": "left",
+      "loads": [
+        {
+          "segment": 4,
+          "type": "distributed",
+          "direction": -1,
+          "count": 2
+        },
+        {
+          "segment": 4,
+          "type": "force",
+          "direction": 1,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "scheme_id": "9",
+      "name": "Схема 9",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 1,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "10",
+      "name": "Схема 10",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "11",
+      "name": "Схема 11",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "12",
+      "name": "Схема 12",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "13",
+      "name": "Схема 13",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "14",
+      "name": "Схема 14",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "15",
+      "name": "Схема 15",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "16",
+      "name": "Схема 16",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 3,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "17",
+      "name": "Схема 17",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "18",
+      "name": "Схема 18",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "19",
+      "name": "Схема 19",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 1,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "20",
+      "name": "Схема 20",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "21",
+      "name": "Схема 21",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "22",
+      "name": "Схема 22",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "23",
+      "name": "Схема 23",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "24",
+      "name": "Схема 24",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "25",
+      "name": "Схема 25",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "26",
+      "name": "Схема 26",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "27",
+      "name": "Схема 27",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "28",
+      "name": "Схема 28",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        }
+      ]
+    },
+    {
+      "scheme_id": "29",
+      "name": "Схема 29",
+      "support_side": "left",
+      "loads": [
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 2,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 3,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": -1,
+          "segment": 4,
+          "type": "distributed"
+        },
+        {
+          "count": 2,
+          "direction": 1,
+          "segment": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "scheme_id": "30",
+      "name": "Схема 30",
+      "support_side": "right",
+      "loads": [
+        {
+          "count": 3,
+          "direction": -1,
+          "segment": 1,
+          "type": "force"
+        },
+        {
+          "count": 1,
+          "direction": -1,
+          "segment": 2,
+          "type": "distributed"
+        },
+        {
+          "count": 1,
+          "direction": 1,
+          "segment": 3,
+          "type": "force"
+        }
+      ]
+    }
+  ]
+}
