@@ -1,0 +1,69 @@
+{
+  "description": "База данных вариантов заданий по расчёту стержня на растяжение-сжатие (методичка ОмГТУ, Скирда). direction: 1 = вправо (по оси +z), -1 = влево. segment: номер участка 1..4. count — кратность нагрузки (2 -> '2q' или '2P'). support_side: 'left' (закрепление при x=0) или 'right' (закрепление при x=4l).",
+  "units": {
+    "P": "кН",
+    "q": "кН/м",
+    "l": "м",
+    "sigma_allow": "МПа",
+    "E": "МПа"
+  },
+  "variants": [
+    {
+      "variant_id": "5",
+      "P": 15,
+      "q": 20,
+      "l": 1,
+      "sigma_allow": 160,
+      "E": 200000,
+      "support_side": "right",
+      "loads": [
+        {"segment": 1, "type": "force", "direction": -1, "count": 1},
+        {"segment": 2, "type": "distributed", "direction": 1, "count": 1},
+        {"segment": 3, "type": "force", "direction": 1, "count": 2}
+      ]
+    },
+    {
+      "variant_id": "11",
+      "P": 25,
+      "q": 30,
+      "l": 1,
+      "sigma_allow": 160,
+      "E": 200000,
+      "support_side": "left",
+      "loads": [
+        {"segment": 2, "type": "distributed", "direction": -1, "count": 1},
+        {"segment": 3, "type": "force", "direction": 1, "count": 1},
+        {"segment": 4, "type": "distributed", "direction": -1, "count": 2}
+      ]
+    },
+    {
+      "variant_id": "20",
+      "P": 10,
+      "q": 15,
+      "l": 1,
+      "sigma_allow": 160,
+      "E": 200000,
+      "support_side": "right",
+      "loads": [
+        {"segment": 1, "type": "force", "direction": -1, "count": 2},
+        {"segment": 2, "type": "force", "direction": 1, "count": 1},
+        {"segment": 3, "type": "distributed", "direction": 1, "count": 1},
+        {"segment": 4, "type": "distributed", "direction": -1, "count": 1}
+      ]
+    },
+    {
+      "variant_id": "29",
+      "P": 20,
+      "q": 22,
+      "l": 1,
+      "sigma_allow": 160,
+      "E": 200000,
+      "support_side": "left",
+      "loads": [
+        {"segment": 2, "type": "force", "direction": 1, "count": 1},
+        {"segment": 3, "type": "distributed", "direction": -1, "count": 1},
+        {"segment": 4, "type": "distributed", "direction": -1, "count": 2}
+      ]
+    }
+  ]
+}

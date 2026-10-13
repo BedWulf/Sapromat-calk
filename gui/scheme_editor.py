@@ -1,8 +1,15 @@
-from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
+from __future__ import annotations
+
+import contextlib
+from typing import List, Optional
+
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
                              QComboBox, QLineEdit, QGroupBox, QPushButton,
                              QRadioButton, QCheckBox, QScrollArea)
 from PyQt6.QtCore import Qt
 from gui.scheme_visualizer import SchemeVisualizer
+
+from core.variants_db import VariantData
 
 
 class SchemeEditor(QWidget):
@@ -262,6 +269,69 @@ class SchemeEditor(QWidget):
     def set_q_value(self, q_value):
         self._q_value = q_value
         self.update_scheme()
+
+    # ------------------------------------------------------ загрузка варианта
+    @contextlib.contextmanager
+    def _batch_updates(self):
+        """Временно отключить перерисовку схемы (для пакетных изменений)."""
+        original = self.visualizer.update_scheme
+        self.visualizer.update_scheme = lambda *a, **k: None  # type: ignore[assignment]
+        try:
+            yield
+        finally:
+            self.visualizer.update_scheme = original  # type: ignore[assignment]
+            self.update_scheme()
+
+    def load_variant_scheme(self, variant: Optional[VariantData]) -> None:
+        """Программно сконфигурировать редактор по данным варианта из БД.
+
+        Очищает текущие нагрузки, устанавливает сторону закрепления и
+        добавляет нагрузки из массива `loads` выбранного варианта, вызывая
+        существующую логику add_load.
+
+        Args:
+            variant: данные варианта (core.variants_db.VariantData) или None —
+                     в этом случае только сброс нагрузок (ручной режим).
+        """
+        with self._batch_updates():
+            # 1. Очистить все текущие нагрузки
+            self.reset_loads()
+
+            if variant is None:
+                return
+
+            # 2. Граничные условия: сторона закрепления (Приложение 3)
+            if variant.support_side == "left":
+                self.support_left_radio.setChecked(True)
+            else:
+                self.support_right_radio.setChecked(True)
+
+            # 3. Числовые параметры стержня
+            self._P_value = variant.P
+            self._q_value = variant.q
+            self._l_value = variant.l
+
+            # 4. Нагрузки: segment в JSON нумеруется с 1, виджеты — с 0
+            for entry in variant.loads:
+                segment_idx = int(entry.segment) - 1
+                if not 0 <= segment_idx < self.n_segments:
+                    continue  # защита от некорректных данных в БД
+
+                self.add_load(segment_idx)
+                group = self.segment_widgets[segment_idx]
+                widget = group.load_widgets[-1]  # только что добавленная строка
+
+                # Тип: индекс 0 = "Сила P", 1 = "Нагрузка q"
+                type_index = 0 if entry.load_type == "force" else 1
+                widget["type"].setCurrentIndex(type_index)
+
+                # Направление: индекс 0 = "→" (direction=1), 1 = "←" (direction=-1)
+                dir_index = 0 if entry.direction == 1 else 1
+                widget["direction"].setCurrentIndex(dir_index)
+
+                # Кратность (1 -> P/q, 2 -> 2P/2q ...)
+                widget["count"].setText(str(int(entry.count)))
+
 
     def reset_loads(self):
         for group in self.segment_widgets:

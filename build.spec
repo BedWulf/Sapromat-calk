@@ -6,7 +6,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('core/variants_db.json', 'core')],
     hiddenimports=[
         'PyQt6',
         'PyQt6.QtWidgets',
@@ -33,6 +33,7 @@ a = Analysis(
         'core.standards',
         'core.macaulay',
         'core.report_data',
+        'core.variants_db',
         'export',
         'export.word_exporter',
         'utils',
