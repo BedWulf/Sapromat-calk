@@ -196,7 +196,18 @@ class SchemeEditor(QWidget):
         self.update_scheme()
 
     def get_boundary_conditions(self) -> dict:
-        """Автоматическое определение ГУ по схеме"""
+        """Автоматическое определение ГУ по схеме.
+
+        Ключевой момент: в модели стержня с одной опорой реакция опоры —
+        неизвестная нагрузка, поэтому ГУ задаётся на СВОБОДНОМ конце:
+          - опора слева  → известно N(4l) = силам на правом свободном конце;
+            при отсутствии сил на свободном конце эпюра не может быть
+            определена слева — возвращаем N_left=None (эпюра считается
+            от правой границы);
+          - опора справа → аналогично с левым концом.
+        Направляющее правило: сила, направленная ВЛЕВО (-z) на свободном
+        конце, растягивает стержень (N > 0), вправо (+z) — сжимает (N < 0).
+        """
         if self.auto_boundary:
             support_left = self.support_left_radio.isChecked()
             scheme = self.get_scheme()
@@ -206,21 +217,53 @@ class SchemeEditor(QWidget):
             for segment_loads in scheme:
                 all_loads.extend(segment_loads)
 
+            def boundary_from_free_end(forces_at_free_end):
+                """N на свободном конце = сумма приложенных к нему сил.
+
+                Знак по правилу сопротивления: сила, направленная ВЛЕВО
+                (-z), растягивает стержень (N > 0); вправо (+z) — сжимает
+                (N < 0). Если на свободном конце есть распределённая
+                нагрузка, добавляем её равнодействующую q*l со знаком
+                от направления q (q влево → растяжение, N > 0).
+                """
+                N = sum(-ld['count'] * self._P_value * ld['direction']
+                        for ld in forces_at_free_end)
+                return N
+
             if support_left:
-                # Опора слева → N(0) = 0
-                N_right = 0.0
-                for load in all_loads:
-                    if load['type'] == 'force' and abs(load['position'] - 4 * self._l_value) < 0.01:
-                        N_right -= load['count'] * self._P_value * load['direction']
-                return {"N_left": 0.0, "N_right": N_right}
+                # Опора слева → ГУ известно на правом (свободном) конце x = 4l
+                free_start = 3 * self._l_value
+                forces_at_end = [ld for ld in all_loads
+                                 if ld['type'] == 'force'
+                                 and abs(ld['position'] - 4 * self._l_value) < 0.01]
+                dist_at_end = [ld for ld in all_loads
+                               if ld['type'] == 'distributed'
+                               and ld['start'] >= free_start - 0.01]
+                if not forces_at_end and not dist_at_end:
+                    # Нет нагрузки на свободном конце — эпюра не определяется
+                    # от опоры (реакция неизвестна).
+                    return {"N_left": None, "N_right": None}
+                N_right = boundary_from_free_end(forces_at_end)
+                for ld in dist_at_end:
+                    # q влево (direction=-1) даёт растягивающее N > 0
+                    N_right += -ld['count'] * self._q_value * self._l_value \
+                        * ld['direction']
+                return {"N_left": None, "N_right": N_right}
             else:
-                # Опора справа → N(4l) = 0
-                N_left = 0.0
-                for load in all_loads:
-                    if load['type'] == 'force' and abs(load['position']) < 0.01:
-                        # Сила влево (direction=-1) → растяжение → N положительна
-                        N_left -= load['count'] * self._P_value * load['direction']
-                return {"N_left": N_left, "N_right": 0.0}
+                # Опора справа → ГУ известно на левом (свободном) конце x = 0
+                forces_at_start = [ld for ld in all_loads
+                                   if ld['type'] == 'force'
+                                   and abs(ld['position']) < 0.01]
+                dist_at_start = [ld for ld in all_loads
+                                 if ld['type'] == 'distributed'
+                                 and ld['end'] <= self._l_value + 0.01]
+                if not forces_at_start and not dist_at_start:
+                    return {"N_left": None, "N_right": None}
+                N_left = boundary_from_free_end(forces_at_start)
+                for ld in dist_at_start:
+                    N_left += -ld['count'] * self._q_value * self._l_value \
+                        * ld['direction']
+                return {"N_left": N_left, "N_right": None}
         else:
             try:
                 N0 = float(self.N0_edit.text()) if self.N0_edit.text() else 0.0
@@ -245,10 +288,13 @@ class SchemeEditor(QWidget):
         boundary = self.get_boundary_conditions()
         if boundary["N_left"] is not None:
             self.N0_label.setText(f"{boundary['N_left']:.1f} кН")
-            self.N4l_label.setText("—")
-        else:
-            self.N0_label.setText("—")
+            self.N4l_label.setText("не задано (опора)")
+        elif boundary["N_right"] is not None:
+            self.N0_label.setText("не задано (опора)")
             self.N4l_label.setText(f"{boundary['N_right']:.1f} кН")
+        else:
+            self.N0_label.setText("нет силы на свободном конце")
+            self.N4l_label.setText("—")
 
         self.visualizer.update_scheme(
             all_loads, 
