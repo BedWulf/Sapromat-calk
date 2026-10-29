@@ -1,0 +1,6 @@
+PyQt6>=6.6,<7
+matplotlib>=3.8,<4
+numpy>=1.26,<3
+Pillow>=10,<12
+python-docx>=1.1,<2
+pyinstaller>=6.10,<7
