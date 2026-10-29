@@ -1,0 +1,62 @@
+name: Windows EXE and tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - feature/omgtu-two-task-app
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x64
+          cache: pip
+          cache-dependency-path: app/requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Test combined application
+        run: python -m unittest discover -s tests -v
+      - name: Test axial-force module
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Join-Path (Get-Location) 'tension')
+          python -m unittest discover -s tension -p 'test_*.py' -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Test torsion module
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = (Join-Path (Get-Location) 'torsion')
+          python -m unittest discover -s torsion/tests -p 'test_*.py' -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build single Windows EXE
+        shell: pwsh
+        run: |
+          python -m PyInstaller --clean --noconfirm --onefile --windowed --name Sopromat_OMGTU --paths tension --paths torsion --add-data 'teacher_templates;teacher_templates' --add-data 'torsion\assets;torsion\assets' --add-data 'tension\export\assets;tension\export\assets' --hidden-import gui.main_window --hidden-import torsion_gui --collect-submodules core --collect-submodules gui main.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if (-not (Test-Path 'dist\Sopromat_OMGTU.exe')) { throw 'EXE missing' }
+      - name: Upload executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sopromat_OMGTU_Windows_x64
+          path: app/dist/Sopromat_OMGTU.exe
+          if-no-files-found: error
+          retention-days: 14
